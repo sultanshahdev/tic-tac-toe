@@ -1,4 +1,4 @@
-let gameState = (
+export let gameState = (
     ()=>
     {
         let gameBoard=[];
@@ -8,6 +8,7 @@ let gameState = (
         let lastPlayedTileString='';
         let nextTileValue = null;
 
+        return {gameBoard,players,lastPlayer,currentPlayer,lastPlayedTileString,nextTileValue}
 
     }
 

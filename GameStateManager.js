@@ -1,13 +1,13 @@
 import gameState from './GameState.js';
-import {player1,player2} from 'Players.js';
-import tilesMapping from 'TilesMapping.js'
+import {player1,player2} from './Players.js';
+import tilesMapping from './TilesMapping.js'
 
 export const gameStateManager = (()=>{
 
     // must be called by an external actor object
-    let addValueToTile= function(tile)
+    let addValueToTile= function(tileName)
     {
-        let tile = tilesMapping[`${tile}`];
+        let tile = tilesMapping[`${tileName}`];
         tile = gameState.currentPlayer.value;
     }
 
@@ -38,14 +38,16 @@ export const gameStateManager = (()=>{
 
         gameState.players[0]=player1;
         gameState.players[1]=player2;
-        this.resetBoard();
+        resetBoard();
 
      
     }
-    let setLastPlayedTileString = fucntion (tileNameString)
+    let setLastPlayedTileString = function (tileNameString)
     {
         gameState.lastPlayedTileString=tileNameString;
     }
+
+    return {addValueToTile,increaseCurrentPlayerScore,switchPlayers,resetBoard,initializeGameState,setLastPlayedTileString}
 
 })()
 

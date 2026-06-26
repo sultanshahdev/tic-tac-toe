@@ -1,11 +1,11 @@
-import tileClassToActionArrayMap from './CheckMap.js';
+import tileClassToActionArrayMap from './TilesToActionMap.js';
 import tileToIndexMap from './TileToIndexMap';
 import gameState from './GameState.js'
-const winningStateChecker = (
+export const winningStateChecker = (
     ()=>
     {
         let cordinates = [];
-        let gameBoard = gameState.gameBoard[];
+        let gameBoard = gameState.gameBoard;
         let cordinatesString = '';
         let currentX=null;
         let currentY=null;
@@ -17,13 +17,13 @@ const winningStateChecker = (
 
         let setCordinatesString = function()
         {
-            this.cordinatesString = tileToIndexMap[gameState.lastPlayedTileString];
+            cordinatesString = tileToIndexMap[gameState.lastPlayedTileString];
         }
         let getCordinatesFromString = function()
         {
-            this.cordinates = cordinatesString.split(',');
-            this.currentX = Number(cordinates[0]);
-            this.currentY = Number(cordinates[1]);
+            cordinates = cordinatesString.split(',');
+            currentX = Number(cordinates[0]);
+            currentY = Number(cordinates[1]);
         }
 
 
@@ -33,27 +33,27 @@ const winningStateChecker = (
 
         let decideActions = function()
         {
-            this.actions = tileClassToActionArrayMap[gameState.lastPlayedTileString];
+            actions = tileClassToActionArrayMap[gameState.lastPlayedTileString];
         }
 
         let performActions = function()
         {
-            this.actions.forEach((action)=>action());
+            actions.forEach((action)=>action());
         }
 
 
-        let decideSuccess = fucntion()
+        let decideSuccess = function()
         {
-            if(this.matchFound===true)
+            if(matchFound===true)
             {
-                this.successRecord = 
+                successRecord = 
                 {
                     winner : gameState.lastTurnPlayer
                 }
             }
             else 
             {
-                this.successRecord = null;
+                successRecord = null;
             }
         }
 
@@ -61,7 +61,7 @@ const winningStateChecker = (
 
         let checkPossibleMatches = function() 
         {
-            setCordinateString();
+            setCordinatesString();
             getCordinatesFromString();
             decideActions();
             performActions();
@@ -70,47 +70,47 @@ const winningStateChecker = (
 
         let checkUp = function ()
         {
-            if(this.gameBoard[currentX-1][currentY]!==this.tileValue)
-                this.matchFound = false;
+            if(gameBoard[currentX-1][currentY]!==tileValue)
+                matchFound = false;
 
         }
         let checkDown = function()
         {
-            if(this.gameBoard[currentX+1][currentY]!==this.tileValue)
-                this.matchFound = false;
+            if(gameBoard[currentX+1][currentY]!==tileValue)
+                matchFound = false;
         }
 
         let checkLeft = function()
         {
-            if(this.gameBoard[currentX][currentY-1]!==this.tileValue)
-                this.matchFound = false;
+            if(gameBoard[currentX][currentY-1]!==tileValue)
+                matchFound = false;
         }
         let checkRight = function()
         {
-            if(this.gameBoard[currentX][currentY+1]!==this.tileValue)
-                this.matchFound = false;
+            if(gameBoard[currentX][currentY+1]!==tileValue)
+                matchFound = false;
         }
 
         let checkTwoDowns = function()
         {
-            if(this.gameBoard[currentX+1][currentY]!==this.tileValue || this.gameBoard[currentX+2][currentY]!==this.tileValue)
+            if(gameBoard[currentX+1][currentY]!==tileValue || gameBoard[currentX+2][currentY]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }
         }
         let checkTwoUps = function()
         {
-            if(this.gameBoard[currentX-1][currentY]!==this.tileValue || this.gameBoard[currentX-2][currentY]!==this.tileValue)
+            if(gameBoard[currentX-1][currentY]!==tileValue || gameBoard[currentX-2][currentY]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }
         }
 
         let checkTwoLefts = function()
         {
-            if(this.gameBoard[currentX][currentY-1]!==this.tileValue || this.gameBoard[currentX][currentY-2]!==this.tileValue)
+            if(gameBoard[currentX][currentY-1]!==tileValue || gameBoard[currentX][currentY-2]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }
         }
 
@@ -118,70 +118,72 @@ const winningStateChecker = (
 
         let checkTwoRights = function()
         {
-            if(this.gameBoard[currentX][currentY+1]!==this.tileValue || this.gameBoard[currentX][currentY+2]!==this.tileValue)
+            if(gameBoard[currentX][currentY+1]!==tileValue || gameBoard[currentX][currentY+2]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }
         }
         let checkSlantDownFromRight= function ()
         {
-            if(this.gameBoard[currentX+1][currentY-1]!==this.tileValue || this.gameBoard[currentX+2][currentY-2!==this.tileValue])
+            if(gameBoard[currentX+1][currentY-1]!==tileValue || gameBoard[currentX+2][currentY-2!==tileValue])
             {
-                this.matchFound = false;
+                matchFound = false;
             }
         }
         let checkSlantDownFromLeft = function()
         {
-            if(this.gameBoard[currentX+1][currentY+1]!==this.tileValue || this.gameBoard[currentX+2][currentY+2!==this.tileValue])
+            if(gameBoard[currentX+1][currentY+1]!==tileValue || gameBoard[currentX+2][currentY+2!==tileValue])
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
         }
 
         let checkSlantUpFromLeft = function ()
         {
-            if(this.gameBoard[currentX-1][currentY+1]!==this.tileValue || this.gameBoard[currentX-2][currentY+2!==this.tileValue])
+            if(gameBoard[currentX-1][currentY+1]!==tileValue || gameBoard[currentX-2][currentY+2!==tileValue])
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
 
         }
         let checkSlantUpFromRight = function ()
         {
-            if(this.gameBoard[currentX-1][currentY-1]!==this.tileValue || this.gameBoard[currentX-2][currentY-2!==this.tileValue])
+            if(gameBoard[currentX-1][currentY-1]!==tileValue || gameBoard[currentX-2][currentY-2!==tileValue])
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
 
         }
         let checkTopRight = function ()
         {
-        if(this.gameBoard[currentX-1][currentY+1]!==this.tileValue)
+        if(gameBoard[currentX-1][currentY+1]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
         }
         let checkTopLeft = function ()
         {
-        if(this.gameBoard[currentX-1][currentY-1]!==this.tileValue)
+        if(gameBoard[currentX-1][currentY-1]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
         }
         let checkBottomRight = function ()
         {
-        if(this.gameBoard[currentX+1][currentY+1]!==this.tileValue)
+        if(gameBoard[currentX+1][currentY+1]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
         }
         let checkBottomLeft = function ()
         {
-        if(this.gameBoard[currentX+1][currentY-1]!==this.tileValue)
+        if(gameBoard[currentX+1][currentY-1]!==tileValue)
             {
-                this.matchFound = false;
+                matchFound = false;
             }   
         }
+
+        return {setCordinatesString,getCordinatesFromString,decideActions,performActions,decideSuccess,checkPossibleMatches}
 
 
 

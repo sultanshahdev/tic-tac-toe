@@ -1,5 +1,5 @@
 import gameState from './GameState.js' 
-let eventManager= (
+export let eventManager= (
     ()=>
     {
 
@@ -7,8 +7,8 @@ let eventManager= (
 
         tiles.forEach((tile)=>
         {
-            tile.addAttribute('blocked','false');
-            tile.addEvenetListener('click',gameEvent(e))
+            tile.setAttribute('blocked','false');
+            tile.addEventListener('click',(e)=>{gameEvent(e)})
 
         });
 
@@ -32,7 +32,7 @@ let eventManager= (
         {
             
             gameStateManager.addValueToTile(targetElement.id);
-            gameStateManage.switchPlayers();
+            gameStateManager.switchPlayers();
             gameStateManager.setLastPlayedTileString(targetElement.id);
 
 
@@ -50,10 +50,10 @@ let eventManager= (
         }
         let declareWinnerAndUpdateGameBoard = function()
         {
-            this.displayWinMessage(winningStateChecker.winner.name);
-            this.updateScoreForWinner(winner);
+            displayWinMessage(winningStateChecker.winner.name);
+            updateScoreForWinner(winner);
             gameStateManager.resetBoard();
-            this.resetDisplay();
+            resetDisplay();
 
         }
         let resetDisplay = function()
@@ -65,7 +65,8 @@ let eventManager= (
         {
             if(element.firstChild!==null)
             {
-                element.removeChild(element.firstChild)
+                element.removeChild(element.firstChild);
+                element.setAttribute('blocked','false');
             }
         }
 
@@ -96,11 +97,11 @@ let eventManager= (
         let getImageType= function()
         {
             let image = null;
-            if(this.gameState.currentPlayer.id===0)
+            if(gameState.currentPlayer.id===0)
             {
                 image = createCrossImage();
             }
-            else if(this.gameState.currentPlayer.id==1)
+            else if(gameState.currentPlayer.id==1)
             {
                 image = createDotImage();
             }
@@ -123,6 +124,7 @@ let eventManager= (
 
         }
        
-
+        return{gameEvent,addImageToTile,checkAndDisplayWin,createCircleImage,createCrossImage,declareWinnerAndUpdateGameBoard,displayWinMessage,getImageType,resetDisplay,resetTile}
+        
     }
 )()
