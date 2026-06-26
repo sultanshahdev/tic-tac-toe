@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <dialog class="win-msg">
+
+    </dialog>
     <head>
         <div class="scoreboard">
             <div class="player-details">
@@ -14,7 +17,7 @@
                     Player 1
                 </p>
                 <img class='player-profile-icon' id='p1-img' src="assets/dog-profile.png" alt="" class="player-icon">
-                <p class="player-score">
+                <p class="player-score" id="player1-score">
                     Score : 0
                 </p>
             </div>
@@ -24,24 +27,30 @@
                 </p>
                 
                 <img class='player-profile-icon' id='p2-img' src="assets/penguin-profile.png" alt="" class="player-icon">
-                <p class="player-score">
+                <p class="player-score" id="player2-score">
                     Score : 0
                 </p>
             </div>
         </div>
     </head>
     <main>  
+         <dialog class="win-msg">
+            Player () won the Match
+            <button class="new-round-btn" type="submit">
+                Play Again!
+            </button>
+        </dialog>
         <div class="game-board-background">
             <div class="game-board">
-                <div class="tile" id="tile-1"><img class="cross-img" src="assets/cross.png"  height="60px" ></div>
-                <div class="tile" id="tile-2"><img class="circle-img"   src="assets/circle.png"   height="60px"alt=""></div>
-                <div class="tile" id="tile-3"><img src="" alt=""></div>
-                <div class="tile" id="tile-4"><img src="" alt=""></div>
-                <div class="tile" id="tile-5"><img src="" alt=""></div>
-                <div class="tile" id="tile-6"><img src="" alt=""></div>
-                <div class="tile" id="tile-7"><img src="" alt=""></div>
-                <div class="tile" id="tile-8"><img src="" alt=""></div>
-                <div class="tile" id="tile-9"><img src="" alt=""></div>
+                <div class="tile" id="tile1"><img class="cross-img" src="assets/cross.png"></div>
+                <div class="tile" id="tile2"><img class="circle-img"   src="assets/circle.png"></div>
+                <div class="tile" id="tile3"><img src="" alt=""></div>
+                <div class="tile" id="tile4"><img src="" alt=""></div>
+                <div class="tile" id="tile5"><img src="" alt=""></div>
+                <div class="tile" id="tile6"><img src="" alt=""></div>
+                <div class="tile" id="tile7"><img src="" alt=""></div>
+                <div class="tile" id="tile8"><img src="" alt=""></div>
+                <div class="tile" id="tile9"><img src="" alt=""></div>
             </div>
         </div>
         
@@ -49,12 +58,12 @@
     <footer>
         <div class="abort-game-option">
             <button class="abort-game-btn">
-                <p>Abort game</p>
+                Abort game
             </button>
         </div>
         <div class="reset-score">
             <button class="reset-score-btn">
-                <p>Reset Score</p>
+                Reset Score
             </button>
         </div>
     </footer>
