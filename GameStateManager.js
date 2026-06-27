@@ -1,6 +1,6 @@
-import gameState from './GameState.js';
+import {gameState} from './GameState.js';
 import {player1,player2} from './Players.js';
-import tilesMapping from './TilesMapping.js'
+import {tilesMapping} from './TilesMapping.js'
 
 export const gameStateManager = (()=>{
 
@@ -8,7 +8,7 @@ export const gameStateManager = (()=>{
     let addValueToTile= function(tileName)
     {
         let tileCordinates = tilesMapping[`${tileName}`];
-        let tile = gameState.gameBoard[tileCordinates[row]][tileCordinates[column]];
+        let tile = gameState.gameBoard[tileCordinates.row][tileCordinates.column];
         tile = gameState.currentPlayer.value;
     }
 
@@ -19,8 +19,8 @@ export const gameStateManager = (()=>{
 
     let switchPlayers= function()
     {
-        tempPlayer = gameState.lastPlayer;
-        gameState.lastPlayer = currentPlayer;
+        let tempPlayer = gameState.lastPlayer;
+        gameState.lastPlayer = gameState.currentPlayer;
         gameState.currentPlayer = tempPlayer; 
     }
 

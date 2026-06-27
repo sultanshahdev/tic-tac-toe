@@ -1,4 +1,4 @@
-let tileClassToActionArrayMap= 
+export let tileClassToActionArrayMap= 
 {
     'tile1' : [checkTwoDowns,checkTwoRights,checkSlantDownFromLeft],
     'tile2' : [checkTwoDowns,checkRight,checkLeft],

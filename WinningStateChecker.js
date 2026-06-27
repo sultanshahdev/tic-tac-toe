@@ -1,11 +1,12 @@
-import tileClassToActionArrayMap from './TilesToActionMap.js';
-import tileToIndexMap from './TileToIndexMap';
-import gameState from './GameState.js'
+import {tileClassToActionArrayMap} from './TilesToActionMap.js';
+import {tileToIndexMap} from './TileToIndexMap';
+import {gameStateManager} from './GameStateManager';
+import {winningStateChecker} from './WinningStateChecker.js'
+import {gameState} from './GameState.js'
 export const winningStateChecker = (
     ()=>
     {
         let cordinates = [];
-        let gameBoard = gameState.gameBoard;
         let cordinatesString = '';
         let currentX=null;
         let currentY=null;
@@ -48,7 +49,7 @@ export const winningStateChecker = (
             {
                 successRecord = 
                 {
-                    winner : gameState.lastTurnPlayer
+                    winner : gameState.lastPlayer
                 }
             }
             else 
@@ -57,10 +58,9 @@ export const winningStateChecker = (
             }
         }
 
-        resetState = function()
+        let resetState = function()
         {
             cordinates = [];
-            gameBoard = gameState.gameBoard;
             cordinatesString = '';
             currentX = null;
             currentY = null;
@@ -82,37 +82,37 @@ export const winningStateChecker = (
 
         let checkUp = function ()
         {
-            if(gameBoard[currentX-1][currentY]!==tileValue)
+            if(gameState.gameBoard[currentX-1][currentY]!==tileValue)
                 matchFound = false;
 
         }
         let checkDown = function()
         {
-            if(gameBoard[currentX+1][currentY]!==tileValue)
+            if(gameState.gameBoard[currentX+1][currentY]!==tileValue)
                 matchFound = false;
         }
 
         let checkLeft = function()
         {
-            if(gameBoard[currentX][currentY-1]!==tileValue)
+            if(gameState.gameBoard[currentX][currentY-1]!==tileValue)
                 matchFound = false;
         }
         let checkRight = function()
         {
-            if(gameBoard[currentX][currentY+1]!==tileValue)
+            if(gameState.gameBoard[currentX][currentY+1]!==tileValue)
                 matchFound = false;
         }
 
         let checkTwoDowns = function()
         {
-            if(gameBoard[currentX+1][currentY]!==tileValue || gameBoard[currentX+2][currentY]!==tileValue)
+            if(gameState.gameBoard[currentX+1][currentY]!==tileValue || gameState.gameBoard[currentX+2][currentY]!==tileValue)
             {
                 matchFound = false;
             }
         }
         let checkTwoUps = function()
         {
-            if(gameBoard[currentX-1][currentY]!==tileValue || gameBoard[currentX-2][currentY]!==tileValue)
+            if(gameState.gameBoard[currentX-1][currentY]!==tileValue || gameState.gameBoard[currentX-2][currentY]!==tileValue)
             {
                 matchFound = false;
             }
@@ -120,7 +120,7 @@ export const winningStateChecker = (
 
         let checkTwoLefts = function()
         {
-            if(gameBoard[currentX][currentY-1]!==tileValue || gameBoard[currentX][currentY-2]!==tileValue)
+            if(gameState.gameBoard[currentX][currentY-1]!==tileValue || gameState.gameBoard[currentX][currentY-2]!==tileValue)
             {
                 matchFound = false;
             }
@@ -130,21 +130,21 @@ export const winningStateChecker = (
 
         let checkTwoRights = function()
         {
-            if(gameBoard[currentX][currentY+1]!==tileValue || gameBoard[currentX][currentY+2]!==tileValue)
+            if(gameState.gameBoard[currentX][currentY+1]!==tileValue || gameState.gameBoard[currentX][currentY+2]!==tileValue)
             {
                 matchFound = false;
             }
         }
         let checkSlantDownFromRight= function ()
         {
-            if(gameBoard[currentX+1][currentY-1]!==tileValue || gameBoard[currentX+2][currentY-2!==tileValue])
+            if(gameState.gameBoard[currentX+1][currentY-1]!==tileValue || gameState.gameBoard[currentX+2][currentY-2!==tileValue])
             {
                 matchFound = false;
             }
         }
         let checkSlantDownFromLeft = function()
         {
-            if(gameBoard[currentX+1][currentY+1]!==tileValue || gameBoard[currentX+2][currentY+2!==tileValue])
+            if(gameState.gameBoard[currentX+1][currentY+1]!==tileValue || gameState.gameBoard[currentX+2][currentY+2!==tileValue])
             {
                 matchFound = false;
             }   
@@ -152,7 +152,7 @@ export const winningStateChecker = (
 
         let checkSlantUpFromLeft = function ()
         {
-            if(gameBoard[currentX-1][currentY+1]!==tileValue || gameBoard[currentX-2][currentY+2!==tileValue])
+            if(gameState.gameBoard[currentX-1][currentY+1]!==tileValue || gameState.gameBoard[currentX-2][currentY+2!==tileValue])
             {
                 matchFound = false;
             }   
@@ -160,7 +160,7 @@ export const winningStateChecker = (
         }
         let checkSlantUpFromRight = function ()
         {
-            if(gameBoard[currentX-1][currentY-1]!==tileValue || gameBoard[currentX-2][currentY-2!==tileValue])
+            if(gameState.gameBoard[currentX-1][currentY-1]!==tileValue || gameState.gameBoard[currentX-2][currentY-2!==tileValue])
             {
                 matchFound = false;
             }   
@@ -168,34 +168,35 @@ export const winningStateChecker = (
         }
         let checkTopRight = function ()
         {
-        if(gameBoard[currentX-1][currentY+1]!==tileValue)
+        if(gameState.gameBoard[currentX-1][currentY+1]!==tileValue)
             {
                 matchFound = false;
             }   
         }
         let checkTopLeft = function ()
         {
-        if(gameBoard[currentX-1][currentY-1]!==tileValue)
+        if(gameState.gameBoard[currentX-1][currentY-1]!==tileValue)
             {
                 matchFound = false;
             }   
         }
         let checkBottomRight = function ()
         {
-        if(gameBoard[currentX+1][currentY+1]!==tileValue)
+        if(gameState.gameBoard[currentX+1][currentY+1]!==tileValue)
             {
                 matchFound = false;
             }   
         }
         let checkBottomLeft = function ()
         {
-        if(gameBoard[currentX+1][currentY-1]!==tileValue)
+        if(gameState.gameBoard[currentX+1][currentY-1]!==tileValue)
             {
                 matchFound = false;
             }   
         }
 
-        return {setCordinatesString,getCordinatesFromString,decideActions,performActions,decideSuccess,checkPossibleMatches}
+        return {setCordinatesString,getCordinatesFromString,decideActions,performActions,resetState,decideSuccess,checkPossibleMatches,
+            checkBottomLeft,checkBottomRight,checkDown,checkLeft,checkRight,checkSlantDownFromLeft,checkSlantDownFromRight,checkSlantUpFromLeft,checkSlantUpFromRight,checkTopLeft,checkTopRight,checkTwoDowns,checkTwoLefts,checkTwoRights,checkTwoUps,checkUp}
 
 
 

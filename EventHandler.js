@@ -1,4 +1,6 @@
-import gameState from './GameState.js' 
+import {gameState} from './GameState.js' 
+import {winningStateChecker} from "./WinningStateChecker";
+import {gameStateManager} from './GameStateManager';
 export let eventManager= (
     ()=>
     {
@@ -14,7 +16,7 @@ export let eventManager= (
 
         let gameEvent = function(e) 
         {
-            if(e.target.getAttribute('blocked'=== 'true'))return;
+            if(e.target.getAttribute('blocked') === 'true')return;
             else
             {
                 addImageToTile(e.target);
@@ -80,14 +82,14 @@ export let eventManager= (
             }
             else if (gameState.lastPlayer.id===1)
             {
-                document.querySelector('#player1-score').innerText = `SCORE : ${gameState.lastPlayer.score} `   
+                document.querySelector('#player2-score').innerText = `SCORE : ${gameState.lastPlayer.score} `   
             }
         }
         let displayWinMessage = function()
         {
             let winMsgElement = document.querySelector('.win-msg')
             {
-                winMsgElement.innexText = `${winnerStateCheck.successRecord.winner.name} won this Round!`;
+                winMsgElement.innerText = `${winnerStateCheck.successRecord.winner.name} won this Round!`;
                 winMsgElement.showModal();
             }    
 
@@ -111,16 +113,16 @@ export let eventManager= (
         let createCrossImage = function()
         {
             let imageElemet = document.createElement('img');
-            imageElement.addAttribute('src','./assets/cross.png');
-            imageElement.appendClass('.cross-img');
+            imageElement.setAttribute('src','./assets/cross.png');
+            imageElement.classList.add('cross-img');
             return imageElement;
 
         }
         let createCircleImage = function()
         {
             let imageElemet = document.createElement('img');
-            imageElement.addAttribute('src','./assets/circle.png');
-            imageElement.appendClass('.circle-img');
+            imageElement.setAttribute('src','./assets/circle.png');
+            imageElement.classList.add('circle-img');
             return imageElement;
 
         }

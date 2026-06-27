@@ -1,4 +1,4 @@
-import gameState from 'GameState.js'
+
 export let tilesMapping = 
 {
     tile1 : {row:0, column:0},

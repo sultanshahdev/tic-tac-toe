@@ -1,4 +1,4 @@
-let tileToIndexMap =
+export let tileToIndexMap =
 {
     tile1 : '0,0',
     tile2 : '0,1',
