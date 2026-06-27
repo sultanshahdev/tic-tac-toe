@@ -1,7 +1,6 @@
 import {tileClassToActionArrayMap} from './TilesToActionMap.js';
 import {tileToIndexMap} from './TileToIndexMap';
 import {gameStateManager} from './GameStateManager';
-import {winningStateChecker} from './WinningStateChecker.js'
 import {gameState} from './GameState.js'
 export const winningStateChecker = (
     ()=>

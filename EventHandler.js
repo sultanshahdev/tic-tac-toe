@@ -1,6 +1,6 @@
 import {gameState} from './GameState.js' 
-import {winningStateChecker} from "./WinningStateChecker";
-import {gameStateManager} from './GameStateManager';
+import {winningStateChecker} from "./WinningStateChecker.js";
+import {gameStateManager} from './GameStateManager.js';
 export let eventManager= (
     ()=>
     {
@@ -52,7 +52,7 @@ export let eventManager= (
         }
         let declareWinnerAndUpdateGameBoard = function()
         {
-            displayWinMessage(winningStateChecker.winner.name);
+            displayWinMessage();
             updateScoreForWinner(winner);
             gameStateManager.resetBoard();
             winningStateChecker.resetState();
@@ -89,7 +89,7 @@ export let eventManager= (
         {
             let winMsgElement = document.querySelector('.win-msg')
             {
-                winMsgElement.innerText = `${winnerStateCheck.successRecord.winner.name} won this Round!`;
+                winMsgElement.innerText = `${winnerStateChecker.successRecord.winner.name} won this Round!`;
                 winMsgElement.showModal();
             }    
 
