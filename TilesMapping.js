@@ -1,21 +1,21 @@
 import gameState from 'GameState.js'
 export let tilesMapping = 
 {
-    tile1 : gameState.gameBoard[0][0],
+    tile1 : {row:0, column:0},
 
-    tile2 : gameState.gameBoard[0][1],
+    tile2 : {row:0, column:1},
 
-    tile3 : gameState.gameBoard[0][2],
+    tile3 : {row:0, column:2},
 
-    tile4 : gameState.gameBoard[1][0],
+    tile4 : {row:1, column:0},
 
-    tile5 : gameState.gameBoard[1][1],
+    tile5 : {row:1, column:1},
 
-    tile6 : gameState.gameBoard[1][2],
+    tile6 : {row:1, column:2},
 
-    tile7 : gameState.gameBoard[2][0],
+    tile7 : {row:2, column:0},
 
-    tile8 : gameState.gameBoard[2][1],
+    tile8 : {row:2, column:1}, 
 
-    tile9 : gameState.gameBoard[2][2],
+    tile9 : {row:2, column:2},
 }

@@ -53,6 +53,7 @@ export let eventManager= (
             displayWinMessage(winningStateChecker.winner.name);
             updateScoreForWinner(winner);
             gameStateManager.resetBoard();
+            winningStateChecker.resetState();
             resetDisplay();
 
         }
@@ -103,7 +104,7 @@ export let eventManager= (
             }
             else if(gameState.currentPlayer.id==1)
             {
-                image = createDotImage();
+                image = createCircleImage();
             }
             return image;
         }

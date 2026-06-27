@@ -1,3 +1,3 @@
-import gameManager from './GameManager.js';
+import gameManager from './GameStateManager.js';
 
 gameManager.startNewGame();

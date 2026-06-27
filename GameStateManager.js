@@ -7,7 +7,8 @@ export const gameStateManager = (()=>{
     // must be called by an external actor object
     let addValueToTile= function(tileName)
     {
-        let tile = tilesMapping[`${tileName}`];
+        let tileCordinates = tilesMapping[`${tileName}`];
+        let tile = gameState.gameBoard[tileCordinates[row]][tileCordinates[column]];
         tile = gameState.currentPlayer.value;
     }
 

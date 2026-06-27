@@ -10,7 +10,7 @@ export const winningStateChecker = (
         let currentX=null;
         let currentY=null;
         let actions    = [];
-        let matchFound = false;
+        let matchFound = true;
         let tileValue  = null;
         let successRecord = null;
 
@@ -57,6 +57,18 @@ export const winningStateChecker = (
             }
         }
 
+        resetState = function()
+        {
+            cordinates = [];
+            gameBoard = gameState.gameBoard;
+            cordinatesString = '';
+            currentX = null;
+            currentY = null;
+            actions = [];
+            matchFound = true;
+            tileValue = null;   
+            successRecord = null;
+        }
 
 
         let checkPossibleMatches = function() 
